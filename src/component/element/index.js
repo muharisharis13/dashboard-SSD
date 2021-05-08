@@ -26,6 +26,7 @@ justify-content:center;
 width: ${({ small, large, big }) => (small ? '25%' : large ? '50%' : big ? '100%' : '100%')};
 
 text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};
+border : ${({ borderList }) => (borderList ? '1px solid black' : 'none')};
 
 border-radius :${({ border }) => (border ? '10px 10px 10px 10px' : '0px 0px 0px 0px')};
 

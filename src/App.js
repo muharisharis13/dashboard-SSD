@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import background from './image/LOGO1.png'
 import { PushNotification } from "./page/Admin/pushNotification/PushNotification";
 import { EditNotification } from "./page/Admin/editNotification/EditNotification";
+import { PageEdit } from './page/Admin/editNotification/component/PageEdit'
 
 import { DashboardOperator } from './page/Operator/dashboard/Dashboard'
 import { EditOperator } from "./page/Operator/editOperator/EditOperator";
@@ -12,6 +13,7 @@ import { EditOperatorDetails } from "./page/Operator/editOperatorDetails/EditOpe
 import { TambahOperator } from "./page/Operator/tambahOperator/TambahOperator";
 import { Login } from "./page/Login/Login";
 import React, { useState, useEffect } from 'react'
+import { ViewComplain } from "./page/Admin/viewComplain/ViewComplain";
 
 const WrapperRoute = styled.div`
 background-image: url(${background});
@@ -50,8 +52,10 @@ function App() {
         </div>
         <Switch>
           <Route exact path="/" component={Dashboard} />
+          <Route path="/ViewComplain" component={ViewComplain} />
           <Route path="/PushNotification" component={PushNotification} />
           <Route path="/EditNotification" component={EditNotification} />
+          <Route path="/EditNotifications/Edit" component={PageEdit} />
 
 
           <Route path="/DashboardOperator" component={DashboardOperator} />

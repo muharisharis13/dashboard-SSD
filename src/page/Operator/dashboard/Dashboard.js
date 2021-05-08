@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card } from '../../../component/element'
 import { Wrapper } from './styles'
+import { MakeGet } from '../../../config/FunctionAPI'
 
 export const DashboardOperator = () => {
+  const [result, setResult] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const getData = () => {
+
+    MakeGet({
+      url: '/getData'
+    })
+      .then(res => {
+        console.log(res)
+      })
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+
   return (
     <div className="container-fluid pb-5">
       <div className="row mt-5">

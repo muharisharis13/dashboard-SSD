@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { cookiesGet } from '../../config/Cookies'
 import Horloge from '../horloge/Horloge'
 import { SiderbarData } from './sidebardata'
 import { MenuBars, NavMenu, Navbar2, ImgProfil, Strong, WrapImage, WrapperSideMenu, IconClose, TextOperator } from './styles'
@@ -28,7 +29,7 @@ export const Navbar = () => {
         </div>
 
         <TextOperator >
-          <h4>Operator</h4>
+          <h4>{cookiesGet({ key: 'role' })}</h4>
         </TextOperator>
       </Navbar2>
 
@@ -48,7 +49,7 @@ export const Navbar = () => {
             <ImgProfil src="https://i0.wp.com/wikirote.org/wp-content/uploads/2019/07/joko-widodo.jpg?resize=298%2C248&ssl=1" alt="profile" />
           </div>
           <div className="col-md-12">
-            <Strong>Jokowi</Strong>
+            <Strong>{cookiesGet({ key: 'role' })}</Strong>
           </div>
         </WrapImage>
 

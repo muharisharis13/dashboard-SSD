@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Card } from '../../../component/element'
+import { Link } from 'react-router-dom'
 
 export const Dashboard = () => {
   return (
@@ -26,9 +27,12 @@ export const Dashboard = () => {
 
               <div className="row mt-3">
                 <div className="col-md-12 col-sm-12" style={{ padding: '20px 40px' }}>
-                  <Button primary big boxShadow>
-                    View Complains
-                  </Button>
+                  <Link to="/ViewComplain" style={{ textDecoration: 'none' }}>
+                    <Button primary big boxShadow>
+                      View Complains
+
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </Card>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Card } from '../../../component/element'
 import data from '../../../json/dataNotif.json'
 import { ColCard, ColDesc, ColImage, Container, ImageNotif, Title } from './styles'
+import { Link } from 'react-router-dom'
 
 export const EditNotification = () => {
   return (
@@ -30,9 +31,14 @@ export const EditNotification = () => {
 
                   <div className="row mt-2">
                     <div className="col-md-6 pb-2">
-                      <Button primary border boxShadow>
-                        Edit
+                      <Link to={{
+                        pathname: "/EditNotifications/Edit",
+                        dataProps: data[index]
+                      }} style={{ textDecoration: 'none' }}>
+                        <Button primary border boxShadow>
+                          Edit
                       </Button>
+                      </Link>
                     </div>
                     <div className="col-md-6">
                       <Button danger border>

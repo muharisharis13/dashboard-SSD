@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import "react-datepicker/dist/react-datepicker.css";
 import { Login } from './page/Login/Login';
 import { Navbar } from './component/navbar/navbar';
 import Store from './config/Context';
+import { cookiesGet } from './config/Cookies'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,7 +16,11 @@ ReactDOM.render(
       <Router>
         <Switch>
           <Route exact path="/Login" component={Login} />
-          <App />
+          {
+            cookiesGet({ key: 'token' }) ?
+              <App />
+              : <Redirect to="/login" />
+          }
         </Switch>
 
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { cookiesRemove } from '../../config/Cookies'
 
 const SideBarLink = styled(NavLink)`
 display:flex;
@@ -60,11 +61,17 @@ export const SubMenu = ({ item }) => {
     setSelected(!selected)
   }
 
+  const btnLogOut = () => {
+    cookiesRemove({ key: 'token' })
+    cookiesRemove({ key: 'role' })
+    window.location.href = '/Login'
+  }
+
 
 
   return (
     <>
-      <SideBarLink itemPath={item.path} to={item.path} onClick={() => { item.subNav && btnShowSubnav() }}>
+      <SideBarLink itemPath={item.path} to={item.path} onClick={item.path === '/Login' ? btnLogOut : () => { item.subNav && btnShowSubnav(); }}>
         <div>
           {item.icon} &nbsp; {item.title}
         </div>
