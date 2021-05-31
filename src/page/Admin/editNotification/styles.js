@@ -34,3 +34,7 @@ font-size:1.5rem;
 font-weight:800;
 margin-left:7%;
 `
+
+export const SmallDate = styled.small`
+color:grey;
+`

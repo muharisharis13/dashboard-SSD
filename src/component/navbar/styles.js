@@ -10,6 +10,13 @@ height: 80px;
   width: 100%;
   position:fixed;
   background-color:#fff;
+  z-index:2;
+  padding:10px 10px;
+
+  @media (max-width: 768px) {
+    padding:0px 0px;
+    padding-right:20px;
+  }
 `
 
 export const MenuBars = styled.div`

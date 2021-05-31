@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { cookiesGet } from '../../config/Cookies'
+import { decrypt } from '../../config/Enkripsi/Enkripsi'
 import Horloge from '../horloge/Horloge'
-import { SiderbarData } from './sidebardata'
+import { SiderbarData, sidebarData2 } from './sidebardata'
 import { MenuBars, NavMenu, Navbar2, ImgProfil, Strong, WrapImage, WrapperSideMenu, IconClose, TextOperator } from './styles'
 import { SubMenu } from './submenu'
 
@@ -13,7 +14,7 @@ export const Navbar = () => {
 
   const btnNavbar = () => setNavbar(!navbar)
   return (
-    <div className="container-fluid fixed">
+    <div className="fixed">
       <Navbar2>
         <div className="row">
           <div className="col">
@@ -29,7 +30,7 @@ export const Navbar = () => {
         </div>
 
         <TextOperator >
-          <h4>{cookiesGet({ key: 'role' })}</h4>
+          <h4>{decrypt(cookiesGet({ key: 'role' }))}</h4>
         </TextOperator>
       </Navbar2>
 
@@ -46,18 +47,23 @@ export const Navbar = () => {
 
         <WrapImage className="row">
           <div className="col-md-12">
-            <ImgProfil src="https://i0.wp.com/wikirote.org/wp-content/uploads/2019/07/joko-widodo.jpg?resize=298%2C248&ssl=1" alt="profile" />
+            <ImgProfil src={decrypt(cookiesGet({ key: 'photo_profil' }))} alt="profile" />
           </div>
           <div className="col-md-12">
-            <Strong>{cookiesGet({ key: 'role' })}</Strong>
+            <Strong>{decrypt(cookiesGet({ key: 'name' }))}</Strong>
           </div>
         </WrapImage>
 
         <WrapperSideMenu>
           {
-            SiderbarData.map((item, index) => (
-              <SubMenu key={index} item={item} />
-            ))
+            decrypt(cookiesGet({ key: 'role' })) === 'OPERATOR' ?
+              SiderbarData.map((item, index) => (
+                <SubMenu key={index} item={item} />
+              )) :
+              decrypt(cookiesGet({ key: 'role' })) === 'ADMIN' ?
+                sidebarData2.map((item, index) => (
+                  <SubMenu key={index} item={item} />
+                )) : null
           }
         </WrapperSideMenu>
       </NavMenu>

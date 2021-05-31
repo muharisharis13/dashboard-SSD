@@ -1,5 +1,10 @@
 import React from 'react'
-import { FaBell, FaCaretDown, FaCaretUp, FaDoorOpen, FaEdit, FaHome, FaRegAddressCard, FaSignInAlt } from 'react-icons/fa'
+import { FaBell, FaCaretDown, FaCaretUp, FaDoorOpen, FaEdit, FaHome, FaRegAddressCard, FaSignInAlt, FaUserAlt, FaUserCircle } from 'react-icons/fa'
+import { cookiesGet } from '../../config/Cookies'
+
+
+
+
 
 export const SiderbarData = [
   {
@@ -8,19 +13,51 @@ export const SiderbarData = [
     icon: <FaHome />
   },
   {
-    title: 'PushNotification',
+    title: 'PostBerita',
     path: '/PushNotification',
     icon: <FaBell />
   },
   {
-    title: 'EditNotification',
+    title: 'EditBerita',
     path: '/EditNotification',
     icon: <FaEdit />
   },
+
+
   {
-    title: 'Dashboard',
-    path: '/DashboardOperator',
+    title: 'LogOut',
+    path: '/Login',
+    icon: <FaDoorOpen />
+  },
+];
+
+
+export const sidebarData2 = [
+  {
+    title: 'Statistics',
+    path: '/',
     icon: <FaHome />
+  },
+  {
+    title: 'Daftar User',
+    path: '#',
+    icon: <FaUserAlt />,
+    iconClosed: <FaCaretDown />,
+    iconOpened: <FaCaretUp />,
+    subNav: [
+
+      {
+        title: 'Data User',
+        path: '/DaftarUser',
+        icon: ''
+      },
+
+    ]
+  },
+  {
+    title: 'Request User',
+    path: '/RequestUser',
+    icon: <FaUserCircle />
   },
   {
     title: 'EditOperator',
@@ -37,20 +74,5 @@ export const SiderbarData = [
     path: '/Login',
     icon: <FaDoorOpen />
   },
-  // {
-  //   title: 'Stock',
-  //   path: '#',
-  //   icon: <FaSignInAlt />,
-  //   iconClosed: <FaCaretDown />,
-  //   iconOpened: <FaCaretUp />,
-  //   subNav: [
-
-  //     {
-  //       title: 'In Stock',
-  //       path: '/Stock/instock',
-  //       icon: ''
-  //     },
-
-  //   ]
-  // },
 ]
+

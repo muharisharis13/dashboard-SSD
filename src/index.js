@@ -9,6 +9,7 @@ import { Login } from './page/Login/Login';
 import { Navbar } from './component/navbar/navbar';
 import Store from './config/Context';
 import { cookiesGet } from './config/Cookies'
+import { decrypt } from './config/Enkripsi/Enkripsi';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,7 +18,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/Login" component={Login} />
           {
-            cookiesGet({ key: 'token' }) ?
+            cookiesGet({ key: 'token' }) && decrypt(cookiesGet({ key: 'token' })) ?
               <App />
               : <Redirect to="/login" />
           }

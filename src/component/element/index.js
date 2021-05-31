@@ -32,6 +32,7 @@ border-radius :${({ border }) => (border ? '10px 10px 10px 10px' : '0px 0px 0px 
 
 &:hover {
   box-shadow: ${({ boxShadow, danger, boxShadowMasuk }) => (boxShadow ? '0px 0px 22px 3px rgba(2,43,82,0.7)' : danger ? '0px 0px 22px 3px rgba(255,0,0,0.7)' : boxShadowMasuk ? '0px 0px 22px 3px rgba(63,182,232,1)' : 'none')};
+  color:#fff;
 }
 `
 
@@ -48,6 +49,7 @@ display:flex;
 text-align:center;
 align-items:center;
 justify-content:center;
+margin-top:10px;
 width: ${({ small, large, big }) => (small ? '25%' : large ? '50%' : big ? '100%' : '100%')};
 
 border-radius :${({ border }) => (border ? '10px 10px 10px 10px' : '0px 0px 0px 0px')};

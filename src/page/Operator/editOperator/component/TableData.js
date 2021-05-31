@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaToggleOff, FaToggleOn, FaTrash } from 'react-icons/fa'
 import styled from 'styled-components'
 import { Button } from '../../../../component/element'
-import data from '../../../../json/pegawaiOperator.json'
 import { Link } from 'react-router-dom'
+import { Toggle } from '../../../../component/toggle/Toggle'
 
 const Thead = styled.thead`
 text-align:center;
@@ -13,18 +13,11 @@ const TableIcon = styled.table`
 text-align:center;
 justify-content:space-between;
 align-items:center;
+display:flex;
+width:100%;
+padding:0px 10px;
 `
 
-const ToggleOn = styled(FaToggleOn)`
-font-size:2rem;
-cursor: pointer;
-transition:2s;
-`
-const ToggleOff = styled(FaToggleOff)`
-font-size:2rem;
-cursor: pointer;
-transition:2s;
-`
 
 const Trash = styled(FaTrash)`
 cursor:pointer;
@@ -35,7 +28,7 @@ background: ${({ bgcolor }) => (bgcolor ? '#DEDEDE' : 'transparent')};
 text-align : center;
 `
 
-export const TableData = () => {
+export const TableData = ({ data }) => {
   return (
     <table className="table table-bordered" style={{ background: '#fff' }}>
       <Thead>
@@ -47,26 +40,28 @@ export const TableData = () => {
       </Thead>
       <tbody>
         {
-          data.map((item, index) => (
+          data.length > 0 ? data.map((item, index) => (
             <Tr bgcolor={index % 2 ? true : false} key={index}>
-              <td> {item.id}</td>
-              <td> {item.nama}</td>
+              <td> {item._id}</td>
+              <td> {item.full_name}</td>
               <td>
-                <TableIcon className="table table-bordered">
+                <TableIcon>
                   <td> <Link to={{
                     pathname: '/EditOperators/Details',
-                    props: data[index]
+                    props: item._id
                   }}>
                     <Button underline>Edit</Button>
                   </Link> </td>
                   <td>
-                    {item.status === "true" ? <ToggleOn /> : <ToggleOff />}
+                    {/* {item.status === "true" ? <ToggleOn /> : <ToggleOff />} */}
+                    <Toggle id={index} />
                   </td>
                   <td> <Trash /> </td>
                 </TableIcon>
               </td>
             </Tr>
           ))
+            : 'Nothing Data'
         }
       </tbody>
     </table>

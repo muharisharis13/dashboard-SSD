@@ -31,7 +31,7 @@ background-color : ${({ itemPath }) => (itemPath === window.location.pathname ? 
 
 
 const DropDwonLink = styled(NavLink)`
-height: 50px;
+height: ${({ subnav }) => (subnav ? '50px' : '0px')};
 padding-left:2.4rem;
 display:flex;
 align-items: center;
@@ -41,6 +41,8 @@ font-size:18px;
 transition:340ms;
 font-weight:500;
 background-color : ${({ itemPath }) => (itemPath === window.location.pathname ? '#FEC8C8' : '#fff')};
+transition: height 0.5s;
+transition-timing-function: ease;
 
 
 &:hover {
@@ -50,6 +52,10 @@ background-color : ${({ itemPath }) => (itemPath === window.location.pathname ? 
   color:white;
   
 }
+`
+
+const ListDropdown = styled.div`
+display:${({ subnav }) => (subnav ? 'block' : 'none')}
 `
 
 export const SubMenu = ({ item }) => {
@@ -64,6 +70,8 @@ export const SubMenu = ({ item }) => {
   const btnLogOut = () => {
     cookiesRemove({ key: 'token' })
     cookiesRemove({ key: 'role' })
+    cookiesRemove({ key: 'name' })
+    cookiesRemove({ key: 'photo_profil' })
     window.location.href = '/Login'
   }
 
@@ -80,9 +88,11 @@ export const SubMenu = ({ item }) => {
         </div>
       </SideBarLink>
       {
-        subnav && item.subNav !== undefined ? item.subNav.map((item, index) => (
-          <DropDwonLink itemPath={item.path} to={item.path} key={index}>
-            {item.icon} &nbsp; {item.title}
+        item.subNav !== undefined ? item.subNav.map((item, index) => (
+          <DropDwonLink subnav={subnav} itemPath={item.path} to={item.path} key={index}>
+            <ListDropdown subnav={subnav}>
+              {item.icon} &nbsp; {item.title}
+            </ListDropdown>
           </DropDwonLink>
         ))
 
